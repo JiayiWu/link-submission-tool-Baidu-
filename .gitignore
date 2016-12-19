@@ -1,0 +1,6 @@
+
+*.log
+
+.idea/workspace.xml
+
+data/runner.db
