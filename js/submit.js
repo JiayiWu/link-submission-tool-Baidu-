@@ -6,22 +6,15 @@
 function submit() {
     $('#logout').click(function () {
         jQuery.ajax({
-            url: 'user/logout',
+            url: 'submit/link',
             cache: false,
+            data:{
+                url:$('#url').value(),
+                token:$('#token').value(),
+                sum:$('#url-sum').value()
+            },
             success: function(data) {
-                if(data.state == true){
-                    var object = data.object;
-                    var date = [];
-                    var chardata = [];
-                    for (var i=0;i<object.length;i++){
-                        date.push(object[i].date);
-                        chardata.push(object[i].calorie);
-                    }
-                    var max = object[object.length-1];
-                    chart.drawMapChart(max.running_percent,max.swimming_percent,max.cycling_percent,max.walking_percent,max.sitting_percent);
-                    chart.drawCalChart(date,chardata);
-
-                }
+                
             },
             error:function (data) {
                 
