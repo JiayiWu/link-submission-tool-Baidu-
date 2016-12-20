@@ -4,17 +4,18 @@
 
 
 function submit() {
-    $('#logout').click(function () {
+    $('#buttom-sbm').click(function () {
         jQuery.ajax({
             url: 'submit/link',
             cache: false,
+            type:"post",
             data:{
                 url:$('#url').value(),
                 token:$('#token').value(),
                 sum:$('#url-sum').value()
             },
             success: function(data) {
-                
+
             },
             error:function (data) {
                 
