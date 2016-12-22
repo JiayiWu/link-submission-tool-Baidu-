@@ -15,8 +15,11 @@ class SubmitService
         if($data == null||$data['sum'] == null || $data['url'] == null || $data['token'] == null )
             return new MessageInfo(false,null,"相关参数不能为空");
         $urls = preg_split('/[;\r\n]+/s',$data['sum']);
-
-        $api = 'http://data.zz.baidu.com/urls?site='.$data['url'].'&token='.$data['token'];
+        $orl = "";
+        if($data['original'] == '1'){
+            $orl = "&type=original";
+        }
+        $api = 'http://data.zz.baidu.com/urls?site='.$data['url'].'&token='.$data['token'].$orl;
         $ch = curl_init();
         $options =  array(
             CURLOPT_URL => $api,
@@ -31,7 +34,7 @@ class SubmitService
         if( $result == null || $result->error !=null ){
             return new MessageInfo(false,null,"地址或密匙错误,请重新输入");
         }else{
-            return new MessageInfo(true,null,"成功推送"+$result['success']+'条');
+            return new MessageInfo(true,null,"成功推送".$result->success.'条');
         }
     }
 }
