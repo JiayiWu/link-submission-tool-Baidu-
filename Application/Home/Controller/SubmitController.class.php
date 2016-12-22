@@ -10,11 +10,12 @@ namespace Home\Controller;
 
 
 use Think\Controller;
-use Home\Model\SubmitModel as smodel;
+use Home\Service\SubmitService as ss;
 class SubmitController extends Controller
 {
     public function submitLink(){
-        $smodel = new smodel();
-        $this->ajaxReturn($smodel->submitLink(),"JSON");
+
+  $ss = new ss();
+        $this->ajaxReturn($ss->submitLink(),"JSON");
     }
 }
